@@ -1,12 +1,21 @@
 <template>
   <div class="app-container">
     <router-link :to="{ name: 'ArticleCreate'}">
-      发表新文章
+      <el-button type="primary" size="mini">创建文章</el-button>
     </router-link>
+    <br>
+    <br>
     <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           {{ scope.$index }}
+        </template>
+      </el-table-column>
+      <el-table-column label="标题图" align="center">
+        <template slot-scope="scope">
+          <div v-if="scope.row.avatar">
+            <img :src="scope.row.avatar.content" width="80" height="80" >
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="标题" align="center">
@@ -53,15 +62,8 @@
               编辑
             </router-link>
           </el-button>
-          <el-button v-if="row.status!='published'" size="mini" type="success"
-            @click="handleModifyStatus(row,'published')">
-            Publish
-          </el-button>
-          <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
-            Draft
-          </el-button>
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
-            Delete
+            删除
           </el-button>
         </template>
       </el-table-column>
