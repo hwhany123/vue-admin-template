@@ -26,24 +26,34 @@
           </router-link>
         </template>
       </el-table-column>
-      <el-table-column label="作者" align="center">
+      <el-table-column label="作者" align="center" width="60px">
         <template slot-scope="scope">
           <span>{{ scope.row.author.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="文章网址" align="center">
+      <el-table-column label="标签" align="center">
         <template slot-scope="scope">
-          {{ scope.row.url }}
+          <div v-if="scope.row.tags !== null">
+            <span v-for="tag in scope.row.tags" v-bind:key="tag" class="tag">{{ tag }}</span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="分类" align="center" width="100px">
+        <template slot-scope="scope">
+          <span v-if="scope.row.category !== null" class="category">
+            {{ scope.row.category.title }}
+          </span>
+
         </template>
       </el-table-column>
 
-      <el-table-column align="center" prop="created_at" label="更新时间">
+      <el-table-column align="center" prop="created_at" label="更新时间" width="100px">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.updated }}</span>
+          <span>{{ formatted_time(scope.row.updated)}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="文章内容" align="center">
+      <el-table-column label="文章内容" align="center" width="60px">
         <template slot-scope="scope">
           <div>
             <router-link :to="{ name: 'ArticleDetail', params: { id: scope.row.id }}">
@@ -161,7 +171,31 @@
         })
         row.status = status
       },
-
-    }
+      formatted_time: function (iso_date_string) {
+        const date = new Date(iso_date_string);
+        return date.toLocaleDateString()},
+    },
   }
 </script>
+
+<style scoped>
+    .tag {
+        padding: 2px 5px 2px 5px;
+        margin: 5px 5px 5px 0;
+        font-family: Georgia, Arial, sans-serif;
+        font-size: small;
+        background-color: #4e4e4e;
+        color: whitesmoke;
+        border-radius: 5px;
+    }
+    .category {
+        padding: 5px 10px 5px 10px;
+        margin: 5px 5px 5px 0;
+        font-family: Georgia, Arial, sans-serif;
+        font-size: small;
+        background-color: darkred;
+        color: whitesmoke;
+        border-radius: 15px;
+
+    }
+</style>

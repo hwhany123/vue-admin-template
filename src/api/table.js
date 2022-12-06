@@ -35,3 +35,13 @@ export function deleteArticle(id) {
     {headers: {Authorization: 'Bearer ' + getToken()}},
   )
 }
+
+export function postComment(data) {
+  return axios.post(
+    '/api/comment/',
+    data,
+    {headers: {Authorization: 'Bearer ' + getToken()}},
+  )
+}
+
+
