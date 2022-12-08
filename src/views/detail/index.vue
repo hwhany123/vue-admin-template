@@ -55,6 +55,7 @@
     .grid-container {
         display: grid;
         grid-template-columns: 3fr 1fr;
+        margin-left: 20px;
     }
 
 

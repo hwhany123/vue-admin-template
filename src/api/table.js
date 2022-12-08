@@ -44,4 +44,16 @@ export function postComment(data) {
   )
 }
 
+export function postImage(data) {
+  return axios.post(
+    '/api/avatar/',
+    data,
+    {headers: {
+      Authorization: 'Bearer ' + getToken(),
+      'Content-Type': 'multipart/form-data',
+      },
+    },
+  )
+}
+
 

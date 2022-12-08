@@ -1,6 +1,12 @@
 <template>
   <div id="article-create">
     <h3>发表文章</h3>
+    <form id="image_form">
+      <div class="form-elem">
+        <span>图片：</span>
+        <input v-on:change="onFileChange" type="file" id="file">
+      </div>
+    </form>
     <form>
       <div class="form-elem">
         <span>标题：</span>
@@ -36,11 +42,14 @@
 
 <script>
   import axios from 'axios';
-  import { getToken } from '@/utils/auth'
+  import {
+    getToken
+  } from '@/utils/auth'
   import {
     getList,
     getDetail,
-    postArticle
+    postArticle,
+    postImage,
   } from '@/api/table';
 
   export default {
@@ -58,6 +67,8 @@
         selectedCategory: null,
         // 标签
         tags: '',
+        // 标题图
+        avatarID: null,
       }
     },
     mounted() {
@@ -67,6 +78,18 @@
         .then(response => this.categories = response.data)
     },
     methods: {
+      onFileChange(e) {
+        const file = e.target.files[0];
+        // this.imageUrl = URL.createObjectURL(file);
+
+
+        let formData = new FormData();
+        formData.append("content", file);
+
+        // 省去鉴权和错误处理的部分
+        postImage(formData)
+          .then(response => this.avatarID = response.data.id)
+      },
       // 根据分类是否被选中，按钮的颜色发生变化
       // 这里可以看出 css 也是可以被 vue 绑定的，很方便
       categoryStyle(category) {
@@ -100,6 +123,9 @@
           title: that.title,
           body: that.body,
         };
+        // 添加标题图
+        data.avatar_id = that.avatarID;
+
         // 添加分类
         if (that.selectedCategory) {
           data.category_id = that.selectedCategory.id
@@ -112,16 +138,18 @@
           .map(x => x.trim())
           // 剔除长度为零的无效标签
           .filter(x => x.charAt(0) !== '');
-        console.log('ghyjg',getToken())
+        console.log('ghyjg', getToken())
         //{headers: {Authorization: 'Bearer ' + getToken()}},
         postArticle(data).then(function(response) {
-            console.log('ghj:',response);
-            that.$router.push({
-              name: 'ArticleDetail',
-              params: {id: response.data.id}
-            });
-          })
-        }
+          console.log('ghj:', response);
+          that.$router.push({
+            name: 'ArticleDetail',
+            params: {
+              id: response.data.id
+            }
+          });
+        })
+      }
 
     }
 
@@ -133,23 +161,28 @@
   .category-btn {
     margin-right: 10px;
   }
+
   #article-create {
     text-align: center;
     font-size: large;
   }
+
   form {
     text-align: left;
     padding-left: 100px;
     padding-right: 10px;
   }
+
   .form-elem {
     padding: 10px;
   }
+
   input {
     height: 25px;
     padding-left: 10px;
     width: 50%;
   }
+
   button {
     height: 35px;
     cursor: pointer;

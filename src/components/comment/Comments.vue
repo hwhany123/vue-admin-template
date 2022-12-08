@@ -122,7 +122,7 @@ export default {
     .commentBtn {
         height: 25px;
         background: lightslategray;
-        width: 40px;
+        width:;
     }
 
     .comments {
