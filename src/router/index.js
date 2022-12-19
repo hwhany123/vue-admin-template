@@ -47,6 +47,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/store/',
+    component:Layout,
+    children: [{
+      path: ':id',
+      name: 'StoreDetail',
+      component: () => import('@/views/detail/store_index'),
+    }],
+    hidden: true
+  },
+  {
     path: '/article/edit/',
     component:Layout,
     children: [{
@@ -56,6 +66,7 @@ export const constantRoutes = [
     }],
     hidden: true
   },
+
   {
     path: '/article/create/',
     component:Layout,
@@ -63,6 +74,16 @@ export const constantRoutes = [
       path: "/article/create",
       name: "ArticleCreate",
       component: () => import('@/views/create/index'),
+    }],
+    hidden: true
+  },
+  {
+    path: '/store/create/',
+    component:Layout,
+    children: [{
+      path: "/store/create",
+      name: "StoreCreate",
+      component: () => import('@/views/create/store_index'),
     }],
     hidden: true
   },
@@ -105,6 +126,39 @@ export const constantRoutes = [
         meta: { title: 'Tree', icon: 'tree' }
       }
     ]
+  },
+  {
+    path: '/Example2',
+    component: Layout,
+    redirect: '/example2/store',
+    name: 'Example2',
+    meta: { title: '商店', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'store',
+        name: 'Store',
+        component: () => import('@/views/store/index'),
+        meta: { title: '商店1', icon: 'table' }
+      },
+      {
+        path: 'goods',
+        name: 'Goods',
+        component: () => import('@/views/store/goods_index'),
+        meta: { title: '商品', icon: 'table' }
+      },
+      {
+        path: 'cart',
+        name: 'Cart',
+        component: () => import('@/views/store/cart_index'),
+        meta: { title: '购物车', icon: 'table' }
+      },
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/store/user_index'),
+        meta: { title: '用户', icon: 'table' }
+      },
+    ],
   },
 
   {
