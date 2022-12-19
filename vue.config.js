@@ -14,6 +14,8 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+const { VantResolver } = require('unplugin-vue-components/resolvers');
+const ComponentsPlugin = require('unplugin-vue-components/webpack');
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -60,6 +62,11 @@ module.exports = {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index1.html to inject the correct title.
     name: name,
+    plugins: [
+      ComponentsPlugin({
+        resolvers: [VantResolver()],
+      }),
+    ],
     resolve: {
       alias: {
         '@': resolve('src')

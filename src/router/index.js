@@ -66,6 +66,16 @@ export const constantRoutes = [
     }],
     hidden: true
   },
+  {
+    path: '/store/edit/',
+    component:Layout,
+    children: [{
+      path: ":id",
+      name: "StoreEdit",
+      component: () => import('@/views/update/store_index'),
+    }],
+    hidden: true
+  },
 
   {
     path: '/article/create/',
