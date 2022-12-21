@@ -1,7 +1,7 @@
 <template>
   <div id="article-create">
     <h3>发表文章</h3>
-    <form id="image_form">
+    <form id="image_form" enctype="multipart/form-data">
       <div class="form-elem">
         <span>图片：</span>
         <input v-on:change="onFileChange" type="file" id="file">
