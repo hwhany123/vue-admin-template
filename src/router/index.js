@@ -170,6 +170,28 @@ export const constantRoutes = [
       },
     ],
   },
+  {
+    path: '/Example3',
+    component: Layout,
+    redirect: '/example3/media',
+    name: 'Example3',
+    meta: { title: '多媒体', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'music',
+        name: 'musics',
+        component: () => import('@/views/media/index_music'),
+        meta: { title: '音乐', icon: 'table' }
+      },
+      {
+        path: 'vidio',
+        name: 'Videos',
+        component: () => import('@/views/media/index_video'),
+        meta: { title: '视频', icon: 'table' }
+      },
+    ],
+  },
+
 
   {
     path: '/form',
