@@ -47,6 +47,26 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/article_xsz/',
+    component:Layout,
+    children: [{
+      path: ':id',
+      name: 'ArticleDetail_xsz',
+      component: () => import('@/views/detail/index_xsz'),
+    }],
+    hidden: true
+  },
+  {
+    path: '/article_bxclf/',
+    component:Layout,
+    children: [{
+      path: ':id',
+      name: 'ArticleDetail_bxclf',
+      component: () => import('@/views/detail/index_bxclf'),
+    }],
+    hidden: true
+  },
+  {
     path: '/store/',
     component:Layout,
     children: [{
@@ -188,6 +208,27 @@ export const constantRoutes = [
         name: 'Videos',
         component: () => import('@/views/media/index_video'),
         meta: { title: '视频', icon: 'table' }
+      },
+    ],
+  },
+  {
+    path: '/Example5',
+    component: Layout,
+    redirect: '/example2/store',
+    name: 'Example5',
+    meta: { title: '财务系统', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/table/index_xsz'),
+        meta: { title: '财务表格', icon: 'table' }
+      },
+      {
+        path: 'bx_clbx',
+        name: 'Bx_clbx',
+        component: () => import('@/views/table/index_clbx'),
+        meta: { title: '差旅报销', icon: 'table' }
       },
     ],
   },
