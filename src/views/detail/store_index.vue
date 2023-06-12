@@ -11,7 +11,7 @@
         <el-col :span="4" >折扣： <div class="grid-content bg-purple">{{ article.discount }}</div> </el-col>
       </el-row>
       <el-row type="flex" class="row-bg" justify="center"><img src="https://s2.cn.bing.net/th?id=OJ.AR0cTRmf9y09BQ&w=120&h=120&c=8&rs=1&pid=academic" /></el-row>浏览图片
-      <el-row type="flex" class="row-bg" justify="center"><img :src="article.avatar.content" width="100%" /></el-row>
+      <el-row type="flex" class="row-bg" justify="center"><img :src="article.avatar.content" width="100%" v-if="article.avatar"/></el-row>
       <div v-html="article.body_html" class="article-body"></div>
 
     </div>
@@ -54,6 +54,7 @@
         getDetail(this.$route.params.id).then(response => {
 
           this.article = response
+          console.log("store详情",this.article)
         })
       },
       formatted_time: function(iso_date_string) {

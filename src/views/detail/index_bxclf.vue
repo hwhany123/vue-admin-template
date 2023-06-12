@@ -18,7 +18,7 @@
       <div>
 
         </br>
-        <el-table v-loading="listLoading" :data="list.行项目" element-loading-text="Loading" border fit highlight-current-row :header-cell-style="{background:'#778899',color:'white'}" show-summary=True>
+        <el-table v-loading="listLoading" :data="list.行项目" element-loading-text="Loading" border fit highlight-current-row :header-cell-style="{background:'#778899',color:'white'}" >
 
           <el-table-column align="center" label="序号" width="95">
             <template slot-scope="scope">
