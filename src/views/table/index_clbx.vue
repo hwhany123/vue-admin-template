@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <router-link :to="{ name: 'ArticleCreate'}">
-      <el-button type="primary" size="mini">创建文章</el-button>
+    <router-link :to="{ name: 'Article_bxCreate'}">
+      <el-button type="primary" size="mini">创建报销单</el-button>
     </router-link>
     <br>
     <br>
@@ -10,6 +10,11 @@
       <el-table-column align="center" label="报销单号" width="95">
         <template slot-scope="scope">
           {{ scope.row.id}}
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="经办人" width="95">
+        <template slot-scope="scope">
+          {{ scope.row.author.username}}
         </template>
       </el-table-column>
       <el-table-column label="报销人" align="center">
@@ -51,7 +56,7 @@
         <template slot-scope="scope">
           <!--div @click="htm(x=scope.row.id)">{{ scope.row.title}}</div-->
 
-            {{ scope.row.行项目}}
+            <div class="hxmm">{{ scope.row.行项目}}</div>
 
         </template>
       </el-table-column>
@@ -200,5 +205,10 @@
         color: whitesmoke;
         border-radius: 15px;
 
+    }
+    .hxmm{
+      white-space: nowrap;
+      overflow: hidden;
+    text-overflow: ellipsis;
     }
 </style>

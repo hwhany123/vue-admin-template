@@ -108,6 +108,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/article_bx/create/',
+    component:Layout,
+    children: [{
+      path: "/article_bx/create",
+      name: "Article_bxCreate",
+      component: () => import('@/views/create/index_bxclf'),
+    }],
+    hidden: true
+  },
+  {
     path: '/store/create/',
     component:Layout,
     children: [{
