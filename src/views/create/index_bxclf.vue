@@ -1,6 +1,7 @@
 <template>
   <div id="article-create">
     <h3>发表文章</h3>
+
     <form>
       <div class="form-elem">
         <span>id：</span>
@@ -27,7 +28,9 @@
         <textarea v-model="事由" placeholder="输入事由" rows="1" cols="80"></textarea>
       </div>
       <div>
-        <el-table v-loading="listLoading" :data="行项目" contenteditable="true" element-loading-text="Loading" border fit highlight-current-row :header-cell-style="{background:'#778899',color:'white'}" >
+        <el-button  @click="create_row">增行</el-button>
+
+        <el-table v-loading="listLoading" ref="table2" :data="行项目" contenteditable="true" element-loading-text="Loading" border fit highlight-current-row :header-cell-style="{background:'#778899',color:'white'}" >
 
           <el-table-column align="center" label="序号" width="95">
             <template slot-scope="scope">
@@ -119,16 +122,12 @@
             </template>
           </el-table-column>
           <el-table-column label="Actions" align="center" width="330" class-name="small-padding fixed-width">
-            <template slot-scope="{row,$index}">
+            <template slot-scope="scope">
               <!--el-button type="primary" size="mini" @click="handleUpdate(row)">
                 Edit
               </el-button-->
-              <el-button type="primary" size="mini">
-                <router-link :to="{ name: 'ArticleEdit', params: { id: row.id }}">
-                  编辑
-                </router-link>
-              </el-button>
-              <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
+
+              <el-button  type="danger" @click="handleDelete(scope.$index)">
                 删除
               </el-button>
             </template>
@@ -160,7 +159,7 @@
     components: {},
     data: function() {
       return {
-        //
+        listLoading: false,
         id: null,
         报销人: null,
         //
@@ -171,25 +170,12 @@
         是否公派车辆: false,
         //
         事由: null,
-        行项目: [
-          {"id": 1, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 2, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 3, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 4, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 5, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 6, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 7, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null},
-          {"id": 8, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null}
-        ],
-
-
-        // 标题图
-
+        行项目: []
       }
     },
-    mounted() {
+    //mounted() {
 
-    },
+    //}
     methods: {
 
 
@@ -228,6 +214,21 @@
           });
 
         })
+      },
+      create_row(){
+
+        this.行项目.push({"id": this.$refs.table2.data.length+1, "补贴":null , "交通费": null, "住宿费": null, "出发地": null, "目的地": null, "住宿地点": null, "其他费用": null, "结束日期": null, "起始日期": null, "交通工具类型": null})
+
+      },
+      handleDelete(row){
+        let nm=[];
+        this.listLoading=true;
+        console.log("行",row)
+        this.$refs.table2.data=this.$refs.table2.data.splice(row,1);
+        for (let i=1;i<this.$refs.table2.data.length+1;i++){nm.push(i)};
+        this.行项目.id=nm;
+        console.log(this.行项目.id)
+        this.listLoading=false;
       }
 
     }
