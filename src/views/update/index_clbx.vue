@@ -1,27 +1,29 @@
 <template>
   <div id="article-create">
-    <h3>发表文章</h3>
+    <h3>修改页面</h3>
 
     <form>
-      <div class="form-elem">
-        <span>id：</span>
-        <textarea v-model="id" placeholder="输入id" rows="1" cols="3"></textarea>
+      <div id="hs">
+        <span>报销单号：{{id}}</span>
+
       </div>
-      <div class="form-elem">
-        <span>报销人：</span>
-        <textarea v-model="报销人" placeholder="输入报销人" rows="1" cols="5"></textarea>
-      </div>
-      <div class="form-elem">
-        <span>部门：</span>
-        <textarea v-model="部门" placeholder="输入部门" rows="1" cols="15"></textarea>
-      </div>
-      <div class="form-elem">
-        <span>是否享受车改：</span>
-        <el-checkbox  v-model="是否享受车改"/>
-      </div>
-      <div class="form-elem">
-        <span>是否公派车辆：</span>
-        <el-checkbox v-model="是否公派车辆"/>
+      <div id="pzh">
+        <div class="form-elem">
+          <span>报销人：</span>
+          <textarea v-model="报销人" placeholder="输入报销人" rows="1" cols="5"></textarea>
+        </div>
+        <div class="form-elem">
+          <span>部门：</span>
+          <textarea v-model="部门" placeholder="输入部门" rows="1" cols="15"></textarea>
+        </div>
+        <div class="form-elem">
+          <span>是否享受车改：</span>
+          <el-checkbox  v-model="是否享受车改"/>
+        </div>
+        <div class="form-elem">
+          <span>是否公派车辆：</span>
+          <el-checkbox v-model="是否公派车辆"/>
+        </div>
       </div>
       <div class="form-elem">
         <span>事由：</span>
@@ -152,7 +154,9 @@
     getDetail,
     postArticle,
     postImage,
+    putArticle
   } from '@/api/table_clbx';
+
 
   export default {
     name: 'Article_Create',
@@ -173,9 +177,22 @@
         行项目: []
       }
     },
-    //mounted() {
+    mounted() {
+      const that = this;
+      getDetail(that.$route.params.id)
+        .then(function(response) {
+          const data = response;
+          console.log('update',data);
+          that.id = data.id;
+          that.报销人 = data.报销人;
+          that.部门 = data.部门;
+          that.是否享受车改 = data.是否享受车改;
+          that.是否公派车辆 = data.是否公派车辆;
+          that.事由 = data.事由;
+          that.行项目 = data.行项目;
+        })
 
-    //}
+    },
     methods: {
 
 
@@ -204,16 +221,17 @@
 
 
         //{headers: {Authorization: 'Bearer ' + getToken()}},
-        postArticle(data).then(function(response) {
-          console.log('ghj:', response);
-          that.$router.push({
-            name: 'ArticleDetail_bxclf',
-            params: {
-              id: response.data.id
-            }
-          });
+        putArticle(that.id, data).then(function(response) {
+            console.log('ghj:', response);
+            that.$router.push({
+              name: 'ArticleDetail_bxclf',
+              params: {
+                id: response.data.id
+              }
+            });
+          })
 
-        })
+
       },
       create_row(){
 
@@ -241,6 +259,20 @@
   .category-btn {
     margin-right: 10px;
   }
+  #pzh {
+        text-align: center;
+        font-size: small;
+        color: gray;
+        display: flex;
+        justify-content: space-around;
+    }
+  #hs {
+
+        font-size: small;
+        color: gray;
+        display: flex;
+
+    }
 
   #article-create {
     text-align: center;

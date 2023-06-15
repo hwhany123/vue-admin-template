@@ -40,6 +40,14 @@ module.exports = {
       errors: true
     },
     proxy: {
+      '/api-auth': {
+        target: `http://127.0.0.1:8000/api-auth`,
+        ws:true,
+        secure:true,
+
+        changeOrigin: true,
+        pathRewrite: {'^/api-auth':''},
+        },
       '/api': {
         target: `http://localhost:8000/api/`,
         ws:true,
@@ -47,13 +55,7 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {'^/api':''},
         },
-      '/api-auth': {
-        target: `http://localhost:8000/api-auth/`,
-        ws:true,
-        secure:true,
-        changeOrigin: true,
-        pathRewrite: {'^/api-auth':''},
-        },
+
     },
     disableHostCheck: true,
     // before: require('./mock/mock-server.js')

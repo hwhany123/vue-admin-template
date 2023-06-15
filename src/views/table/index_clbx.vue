@@ -12,6 +12,11 @@
           {{ scope.row.id}}
         </template>
       </el-table-column>
+      <el-table-column align="center" label="创建时间" width="95">
+        <template slot-scope="scope">
+          {{ formatted_time(scope.row.created)}}
+        </template>
+      </el-table-column>
       <el-table-column align="center" label="经办人" width="95">
         <template slot-scope="scope">
           {{ scope.row.author.username}}
@@ -75,7 +80,7 @@
             Edit
           </el-button-->
           <el-button type="primary" size="mini">
-            <router-link :to="{ name: 'ArticleEdit', params: { id: row.id }}">
+            <router-link :to="{ name: 'ArticleEdit_bx', params: { id: row.id }}">
               编辑
             </router-link>
           </el-button>
@@ -181,7 +186,7 @@
       },
       formatted_time: function (iso_date_string) {
         const date = new Date(iso_date_string);
-        return date.toLocaleDateString()},
+        return date.toLocaleDateString()+" "+date.toLocaleTimeString()},
     },
   }
 </script>

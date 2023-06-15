@@ -87,6 +87,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/article_bx/edit/',
+    component:Layout,
+    children: [{
+      path: ":id",
+      name: "ArticleEdit_bx",
+      component: () => import('@/views/update/index_clbx'),
+    }],
+    hidden: true
+  },
+  {
     path: '/store/edit/',
     component:Layout,
     children: [{

@@ -1,9 +1,9 @@
 <template>
   <div class="grid-container">
-    <div>
+    <div  id="title">
+      <h2>差旅费报销单</h2>
       </br>
-      <div id="pzh"><div>报销单号：{{ list.id }}</div><div></br></div><div>出差事由：{{ list.事由 }}</div></div>
-      </br>
+      <hr>
 
 
       <div id="pzh" class="row">
@@ -13,10 +13,26 @@
         <div class="col-lg-3">是否公派车辆/；<input type="checkbox" :checked="list.是否公派车辆" disabled=True></div>
       </div>
       </br>
+      <div id="pzh" class="row">最后修改时间：{{ formatted_time2(list.updated) }}</div>
+
+
+
 
       </br>
-      <div>
+      <hr>
+      </br>
+      <div id="hs">
+        出差事由：
+        <div><textarea v-model="list.事由" placeholder="输入事由" rows="2" cols="90"></textarea></div>
 
+        </br>
+        <el-button type="primary" size="mini">
+          <router-link :to="{ name: 'ArticleEdit_bx', params: { id:list.id}}">
+            修改
+          </router-link>
+        </el-button>
+        </br>
+        <div id="pzh" class="row"><div>报销单号：{{ list.id }}</div><div></br></div><div>单据日期：{{ formatted_time(list.created) }}</div></div>
         </br>
         <el-table v-loading="listLoading" :data="list.行项目" element-loading-text="Loading" border fit highlight-current-row :header-cell-style="{background:'#778899',color:'white'}" >
 
@@ -100,30 +116,7 @@
 
             </template>
           </el-table-column>
-          <el-table-column label="文章内容" align="center" width="60px">
-            <template slot-scope="scope">
-              <div>
-                <router-link :to="{ name: 'ArticleDetail_bxclf', params: { id: scope.row.id }}">
-                  -详情-
-                </router-link>
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column label="Actions" align="center" width="330" class-name="small-padding fixed-width">
-            <template slot-scope="{row,$index}">
-              <!--el-button type="primary" size="mini" @click="handleUpdate(row)">
-                Edit
-              </el-button-->
-              <el-button type="primary" size="mini">
-                <router-link :to="{ name: 'ArticleEdit', params: { id: row.id }}">
-                  编辑
-                </router-link>
-              </el-button>
-              <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
-                删除
-              </el-button>
-            </template>
-          </el-table-column>
+
         </el-table>
       </div>
     </div>
@@ -167,6 +160,9 @@
       formatted_time: function (iso_date_string) {
         const date = new Date(iso_date_string);
         return date.toLocaleDateString()},
+      formatted_time2: function (iso_date_string) {
+        const date2 = new Date(iso_date_string);
+        return date2.toLocaleDateString()+" "+date2.toLocaleTimeString()},
     },
   }
 </script>
@@ -185,6 +181,16 @@
     }
     #pzh {
         text-align: center;
+        font-size: small;
+        color: gray;
+    }
+    #title {
+        text-align: center;
+        font-size: small;
+        color: black;
+    }
+    #hs {
+        text-align: left;
         font-size: small;
         color: gray;
     }
