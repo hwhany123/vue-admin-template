@@ -4,7 +4,7 @@
 
     <form>
       <div class="form-elem">
-        <span>id：</span>
+        <span>报销单号：</span>
         <textarea v-model="id" placeholder="输入id" rows="1" cols="3"></textarea>
       </div>
       <div class="form-elem">
