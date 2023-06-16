@@ -67,7 +67,7 @@
         getDetail(this.$route.params.id).then(response => {
 
         this.list = response
-        console.log("不加干预i给",this.list)
+        
         })
       },
       formatted_time: function (iso_date_string) {

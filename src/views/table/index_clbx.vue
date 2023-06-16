@@ -136,16 +136,16 @@
       fetchData() {
         this.listLoading = true
         getList().then(response => {
-          console.log('view.getlist:', response)
+          
           this.list = response.results
-          console.assert(this.list)
+          
           this.listLoading = false
         })
       },
       htm(x) {
         this.listLoading = true
         getDetail(x).then(response => {
-          console.log('view.getdetail:', response)
+          
           this.tobody = response.body
           this.listLoading = false
 

@@ -182,7 +182,7 @@
       getDetail(that.$route.params.id)
         .then(function(response) {
           const data = response;
-          console.log('update',data);
+          
           that.id = data.id;
           that.报销人 = data.报销人;
           that.部门 = data.部门;
@@ -217,12 +217,12 @@
           行项目: that.行项目,
         };
 
-        console.log("data数据：",data)
+        
 
 
         //{headers: {Authorization: 'Bearer ' + getToken()}},
         putArticle(that.id, data).then(function(response) {
-            console.log('ghj:', response);
+            
             that.$router.push({
               name: 'ArticleDetail_bxclf',
               params: {
@@ -241,11 +241,11 @@
       handleDelete(row){
         let nm=[];
         this.listLoading=true;
-        console.log("行",row)
+        
         this.$refs.table2.data=this.$refs.table2.data.splice(row,1);
         for (let i=1;i<this.$refs.table2.data.length+1;i++){nm.push(i)};
         this.行项目.id=nm;
-        console.log(this.行项目.id)
+        
         this.listLoading=false;
       }
 

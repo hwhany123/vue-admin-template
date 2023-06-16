@@ -46,8 +46,7 @@ service.interceptors.response.use(
     const res = response.data
     // 未设置状态码则默认成功状态
     //const code = res.data.code || 200
-    console.log(res)
-    console.log('返回：',response)
+    
     const code=response['status']
     console.log(code)
 

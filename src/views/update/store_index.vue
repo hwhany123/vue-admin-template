@@ -103,7 +103,7 @@ import { title } from '@/settings';
       getDetail(that.$route.params.id)
         .then(function(response) {
           const data = response;
-          console.log('update',data);
+          
           that.title = data.title;
           that.body = data.body;
           that.selectedCategory = data.category;
@@ -167,10 +167,10 @@ import { title } from '@/settings';
             .map(x => x.trim())
             // 剔除长度为零的无效标签
             .filter(x => x.charAt(0) !== '');
-          console.log('ghyjg', getToken())
+          
           //{headers: {Authorization: 'Bearer ' + getToken()}},
           putStore(that.articleID, data).then(function(response) {
-            console.log('ghj:', response);
+            
             that.$router.push({
               name: 'StoreDetail',
               params: {

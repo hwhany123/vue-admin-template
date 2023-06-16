@@ -147,11 +147,11 @@
         getDetail(this.$route.params.id).then(response => {
 
         this.list = response
-        console.log("差旅报销",this.list)
+        
         })
       },
       hh(args){
-        console.log(args)
+        
         return {
           backgroundColor:'red'
         }

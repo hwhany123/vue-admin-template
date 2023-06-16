@@ -54,7 +54,7 @@
         getDetail(this.$route.params.id).then(response => {
 
           this.article = response
-          console.log("store详情",this.article)
+          
         })
       },
       formatted_time: function(iso_date_string) {

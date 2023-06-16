@@ -168,11 +168,10 @@
           .map(x => x.trim())
           // 剔除长度为零的无效标签
           .filter(x => x.charAt(0) !== '');
-        console.log('ghyjg', getToken())
-        console.log('data', data)
+        
         //{headers: {Authorization: 'Bearer ' + getToken()}},
         postStore(data).then(function(response) {
-          console.log('ghj:', response);
+          
           that.$router.push({
             name: 'StoreDetail',
             params: {

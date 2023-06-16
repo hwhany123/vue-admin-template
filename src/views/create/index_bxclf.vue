@@ -200,12 +200,12 @@
           行项目: that.行项目,
         };
 
-        console.log("data数据：",data)
+        
 
 
         //{headers: {Authorization: 'Bearer ' + getToken()}},
         postArticle(data).then(function(response) {
-          console.log('ghj:', response);
+          
           that.$router.push({
             name: 'ArticleDetail_bxclf',
             params: {

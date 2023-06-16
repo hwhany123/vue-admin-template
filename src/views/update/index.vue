@@ -132,7 +132,7 @@ import { title } from '@/settings';
             .map(x => x.trim())
             // 剔除长度为零的无效标签
             .filter(x => x.charAt(0) !== '');
-          console.log('ghyjg', getToken())
+          
           //{headers: {Authorization: 'Bearer ' + getToken()}},
           putArticle(that.articleID, data).then(function(response) {
             console.log('ghj:', response);
