@@ -245,6 +245,12 @@ export const constantRoutes = [
         meta: { title: '财务表格', icon: 'table' }
       },
       {
+        path: 'pivolt',
+        name: 'Pivolt',
+        component: () => import('@/views/table/index_xsz_pivolt'),
+        meta: { title: '费用透视表', icon: 'table' }
+      },
+      {
         path: 'bx_clbx',
         name: 'Bx_clbx',
         component: () => import('@/views/table/index_clbx'),

@@ -9,6 +9,13 @@ export function getList(params) {
     params
   })
 }
+export function getPivolt(params) {
+  return request({
+    url: '/api/article_xsz_pivolt/',
+    method: 'get',
+    params
+  })
+}
 export function getDetail(id) {
   return request({
     url: '/api/article_xsz/'+id+'/',
