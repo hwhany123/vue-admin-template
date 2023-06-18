@@ -248,7 +248,13 @@ export const constantRoutes = [
         path: 'pivolt',
         name: 'Pivolt',
         component: () => import('@/views/table/index_xsz_pivolt'),
-        meta: { title: '费用透视表', icon: 'table' }
+        meta: { title: '行政费用统计表', icon: 'table' }
+      },
+      {
+        path: 'pivolt_aqfy',
+        name: 'Pivolt_aqfy',
+        component: () => import('@/views/table/index_xsz_pivolt_aqfy'),
+        meta: { title: '安全费用统计表', icon: 'table' }
       },
       {
         path: 'bx_clbx',
