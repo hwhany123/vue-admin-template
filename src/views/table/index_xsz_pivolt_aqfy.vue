@@ -26,6 +26,29 @@
 
     </el-table>
 
+    <hr>
+    <br>
+     <h2 style="text-align: center">安全费用明细表</h2>
+
+
+    <br>
+
+    <el-table v-loading="listLoading" :data="detail" element-loading-text="Loading" border fit highlight-current-row :header-cell-style="{background:'#778899',color:'white'}" >
+
+
+
+
+
+
+
+      <el-table-column v-for="col in columns2" :label="col" :prop="col" :key="col">
+
+      </el-table-column>
+
+
+    </el-table>
+
+
   </div>
 </template>
 
@@ -43,7 +66,9 @@
         begin:null,
         end:null,
         list: null,
+        detail:null,
         columns:[],
+        columns2:[],
         listLoading: false
       }
     },
@@ -60,9 +85,11 @@
         this.listLoading = true;
         getPivolt_aqfy(data).then(response => {
 
-          this.list = response
+          this.list = response[0]
+          this.detail = response[1]
           console.log('listc', this.list)
           this.columns = Object.keys(this.list[0]).reverse()
+          this.columns2 = Object.keys(this.detail[0])
 
 
 
@@ -73,6 +100,7 @@
       fetchData() {
         this.listLoading = true
         getPivolt().then(response => {
+
 
           this.list = response
            console.log('list',this.list[0])
