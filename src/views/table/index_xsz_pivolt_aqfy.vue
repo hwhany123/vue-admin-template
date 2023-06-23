@@ -19,7 +19,7 @@
 
 
 
-      <el-table-column v-for="col in columns" :label="col" :prop="col" :key="col">
+      <el-table-column v-for="col in columns" :label="col" :prop="col" :key="col" >
 
       </el-table-column>
 
@@ -117,8 +117,10 @@
       formatted_time: function (iso_date_string) {
         const date = new Date(iso_date_string);
         return date.toLocaleDateString()},
+
     },
   }
+
 </script>
 
 <style scoped>
