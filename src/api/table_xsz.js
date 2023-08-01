@@ -16,6 +16,13 @@ export function getPivolt(params) {
     params
   })
 }
+export function getPivolt_ys(params) {
+  return request({
+    url: '/api/article_xsz_pivolt/ys/',
+    method: 'get',
+    params
+  })
+}
 export function getPivolt_aqfy(params) {
   return request({
     url: '/api/article_xsz_pivolt/aqfy/',

@@ -251,6 +251,12 @@ export const constantRoutes = [
         meta: { title: '行政费用统计表', icon: 'table' }
       },
       {
+        path: 'xzfyyszx',
+        name: 'Xzfyyszx',
+        component: () => import('@/views/table/index_xsz_xzfyyszx'),
+        meta: { title: '行政费用预算执行情况表', icon: 'table' }
+      },
+      {
         path: 'pivolt_aqfy',
         name: 'Pivolt_aqfy',
         component: () => import('@/views/table/index_xsz_pivolt_aqfy'),
