@@ -10,7 +10,7 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/api/user/admin/',
+    url: '/api/user/huangwenhua/',
     method: 'get',
     params: { token }
   })
