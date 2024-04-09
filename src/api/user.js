@@ -8,17 +8,17 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
     url: '/api/user/huangwenhua/',
     method: 'get',
-    params: { token }
+    //params: { token }
   })
 }
 
 export function logout() {
   return request({
-    url: 'api-auth/logout/',
+    url: '/api-auth/logout/',
     method: 'post'
   })
 }
